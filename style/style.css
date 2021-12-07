@@ -64,7 +64,7 @@ body{
     border-radius: 10px;
     margin-top: 10px;
 }
-#gameBord{
+#gameBoard{
     
     max-width:700px;
     display: grid;
