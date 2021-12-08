@@ -3,12 +3,17 @@ let game = {
     lockMode: false,
     firsCard: null,
     secondCard: null,
+    techs: ['bootstrap', 'css', 'electron', 'firebase', 'html', 'javascript', 'jquery', 'mongo', 'node', 'react'],
+    cards: null,
+
+
+
     setCard: function (id) {
-        let card = this.card.filter(card => card.id === id)[0];
+        let card = this.cards.filter(card => card.id === id)[0];
         if (card.flipped || this.lockMode) {
             return false;
         }
-        if (this.firstCard) {
+        if (!this.firstCard) {
             this.firstCard = card;
             this.firstCard.flipped = true;
             return true;
@@ -25,11 +30,11 @@ let game = {
         if (!this.firstCard || !this.secondCard) {
             return false;
         }
-        return this.firstCard === this.secondCard.icon;
+        return this.firstCard.icon === this.secondCard.icon;
 
     },
     clearCards: function () {
-        this.firsCard = null;
+        this.firstCard = null;
         this.secondCard = null;
         this.lockMode = false;
     },
@@ -43,14 +48,13 @@ let game = {
     },
 
 
-    techs: ['bootstrap', 'css', 'electron', 'firebase', 'html', 'javascript', 'jquery', 'mongo', 'node', 'react'],
-    cards: null,
+
     createCardsFromTechs: function () {
         this.cards = [];
         this.techs.forEach((tech) => {
             this.cards.push(this.createPairFromTechs(tech));
         });
-        this.card = this.cards.flatMap(pair => pair);
+        this.cards = this.cards.flatMap(pair => pair);
         this.shuffleCards();
         return this.cards;
     },
@@ -74,7 +78,7 @@ let game = {
 
 
         while (currentIndex !== 0) {
-            randomIndex = Math.floor(Math.random * currentIndex);
+            randomIndex = Math.floor(Math.random() * currentIndex);
             currentIndex--;
             [this.cards[randomIndex], this.cards[currentIndex]] = [this.cards[currentIndex], this.cards[randomIndex]]
         }
