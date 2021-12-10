@@ -6,7 +6,7 @@ const ICON = "icon"
 startGame();
 
 function startGame() {
-    initializeCard(game.createCardsFromTechs());
+    initializeCards(game.createCardsFromTechs());
 
 }
 

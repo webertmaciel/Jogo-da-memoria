@@ -39,7 +39,7 @@ let game = {
         this.lockMode = false;
     },
     unflipCards() {
-        this.firsCard.flipped = false;
+        this.firstCard.flipped = false;
         this.secondCard.flipped = false;
         this.clearCards();
     },
